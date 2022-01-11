@@ -1,0 +1,34 @@
+
+
+<p>
+  <strong>Property type:</strong>
+  <%= @property.property_type %>
+</p>
+
+<p>
+  <strong>Bhk:</strong>
+  <%= @property.bhk %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @property.size %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @property.price %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @property.address %>
+</p>
+
+<p>
+  <strong>Agent:</strong>
+  <%= @property.agent_id %>
+</p>
+
+<%= link_to 'Edit', edit_property_path(@property) %> |
+<%= link_to 'Back', properties_path %>

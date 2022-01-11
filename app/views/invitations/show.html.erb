@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Recipient email:</strong>
+  <%= @invitation.recipient_email %>
+</p>
+
+<p>
+  <strong>Agent:</strong>
+  <%= @invitation.agent_id %>
+</p>
+
+<p>
+  <strong>Property:</strong>
+  <%= @invitation.property_id %>
+</p>
+
+<p>
+  <strong>Lock code:</strong>
+  <%= @invitation.lock_code_id %>
+</p>
+
+<%= link_to 'Edit', edit_invitation_path(@invitation) %> |
+<%= link_to 'Back', invitations_path %>

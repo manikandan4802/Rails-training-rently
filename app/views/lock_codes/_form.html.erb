@@ -1,0 +1,37 @@
+<%= form_with(model: lock_code, local: true) do |form| %>
+  <% if lock_code.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lock_code.errors.count, "error") %> prohibited this lock_code from being saved:</h2>
+
+      <ul>
+        <% lock_code.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :code %>
+    <%= form.number_field :code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :invitation %>
+    <%= form.check_box :invitation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :property_id %>
+    <%= form.text_field :property_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :smart_lock_id %>
+    <%= form.text_field :smart_lock_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

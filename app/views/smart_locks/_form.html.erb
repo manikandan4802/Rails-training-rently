@@ -1,0 +1,32 @@
+<%= form_with(model: smart_lock, local: true) do |form| %>
+  <% if smart_lock.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(smart_lock.errors.count, "error") %> prohibited this smart_lock from being saved:</h2>
+
+      <ul>
+        <% smart_lock.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :serial_num %>
+    <%= form.text_field :serial_num %>
+  </div>
+
+  <div class="field">
+    <%= form.label :company_id %>
+    <%= form.text_field :company_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :property_id %>
+    <%= form.text_field :property_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

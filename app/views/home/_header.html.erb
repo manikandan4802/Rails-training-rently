@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+  <%= link_to 'Smart Home', root_path, class:"navbar-brand"%>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+      <% if agent_signed_in? %>
+
+        <li class="nav-item">
+        <%= link_to 'Edit Profile', edit_agent_registration_path, class:"nav-link active"%>
+        </li>
+      
+        <li class="nav-item dropdown">
+          <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Agent
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to 'Add Agent', new_agent_path, class:"dropdown-item "%>
+          <%= link_to 'Agents', agents_path, class:"dropdown-item"%>  
+          </ul>
+        </li>
+
+
+        <li class="nav-item dropdown">
+          <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Property
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to 'Add Properties', new_property_path, class:"dropdown-item "%>
+          <%=  link_to 'Properties', properties_path,class:"dropdown-item "%>  
+          </ul>
+        </li>
+
+
+          <li class="nav-item">
+          <%= link_to 'About Us', home_about_path, class:"nav-link"%>
+          </li>
+
+          <li class="nav-item">
+          <%= link_to 'Log out', destroy_agent_session_path, 'data-method' => :delete, class:'nav-link' %>
+          </li>
+          
+
+        <%else%>
+          <li class="nav-item">
+          <%= link_to 'Sign Up', new_agent_registration_path, class:"nav-link"%>
+          </li>
+
+          <li class="nav-item">
+          <%= link_to 'Log in', new_agent_session_path, class:"nav-link"%>
+          </li>
+        
+          
+      <%end%>
+      </ul>
+    </div>
+  </div>
+</nav>

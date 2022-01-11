@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @lock_code.code %>
+</p>
+
+<p>
+  <strong>Invitation:</strong>
+  <%= @lock_code.invitation %>
+</p>
+
+<p>
+  <strong>Property:</strong>
+  <%= @lock_code.property_id %>
+</p>
+
+<p>
+  <strong>Smart lock:</strong>
+  <%= @lock_code.smart_lock_id %>
+</p>
+
+<%= link_to 'Edit', edit_lock_code_path(@lock_code) %> |
+<%= link_to 'Back', lock_codes_path %>

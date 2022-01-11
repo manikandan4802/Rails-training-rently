@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  serial_num: MyString
+  company: one
+  property: one
+
+two:
+  serial_num: MyString
+  company: two
+  property: two

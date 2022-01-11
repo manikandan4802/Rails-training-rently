@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lock Codes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Invitation</th>
+      <th>Property</th>
+      <th>Smart lock</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lock_codes.each do |lock_code| %>
+      <tr>
+        <td><%= lock_code.code %></td>
+        <td><%= lock_code.invitation %></td>
+        <td><%= lock_code.property_id %></td>
+        <td><%= lock_code.smart_lock_id %></td>
+        <td><%= link_to 'Show', lock_code %></td>
+        <td><%= link_to 'Edit', edit_lock_code_path(lock_code) %></td>
+        <td><%= link_to 'Destroy', lock_code, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lock Code', new_lock_code_path %>
