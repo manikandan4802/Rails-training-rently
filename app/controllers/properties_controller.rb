@@ -50,7 +50,7 @@ class PropertiesController < ApplicationController
   # DELETE /properties/1 or /properties/1.json
   def destroy
     pr = Property.find_by_id params[:id]
-    pr.lockcodes.clear
+    pr.lock_codes.clear
     pr.invitations.clear
     pr.destroy
     respond_to do |format|

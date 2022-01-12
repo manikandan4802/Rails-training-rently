@@ -29,7 +29,7 @@
         <td><%= agent.company_id %></td>
         <td><%= link_to 'Show', agent, class:"btn btn-success"%></td>
         <td><%= link_to 'Edit', edit_agent_path(agent) , class:"btn btn-info"%></td>
-        <td><%= link_to 'Destroy', agent, method: :delete, data: { confirm: 'Are you sure?' } , class:"btn btn-danger"%></td>  
+        <td><%= button_to 'Destroy', "/agents/#{agent.id}", method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-danger"%></td>
       </tr>
     <% end %>
   </tbody>

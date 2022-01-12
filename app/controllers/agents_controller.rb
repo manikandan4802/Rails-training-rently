@@ -1,4 +1,5 @@
 class AgentsController < ApplicationController
+  before_action :authenticate_agent!
   before_action :set_agent, only: %i[ show edit update destroy ]
 
   # GET /agents or /agents.json
@@ -50,6 +51,7 @@ class AgentsController < ApplicationController
 
   # DELETE /agents/1 or /agents/1.json
   def destroy
+    @agent= Agent.find_by_id params[:id]
     @agent.destroy
 
     respond_to do |format|
