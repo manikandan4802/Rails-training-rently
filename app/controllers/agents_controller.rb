@@ -2,6 +2,16 @@ class AgentsController < ApplicationController
   before_action :authenticate_agent!
   before_action :set_agent, only: %i[ show edit update destroy ]
 
+  def destroy
+    @agent= Agent.find_by_id params[:id]
+    @agent.destroy
+
+    respond_to do |format|
+      format.html { redirect_to agents_url, notice: "Agent was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
+  
   # GET /agents or /agents.json
   def index
     @agents = Agent.all
@@ -52,15 +62,7 @@ class AgentsController < ApplicationController
   end
 
   # DELETE /agents/1 or /agents/1.json
-  def destroy
-    @agent= Agent.find_by_id params[:id]
-    @agent.destroy
-
-    respond_to do |format|
-      format.html { redirect_to agents_url, notice: "Agent was successfully destroyed." }
-      format.json { head :no_content }
-    end
-  end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

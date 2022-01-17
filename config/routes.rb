@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   # devise_for :agents
   # resources :agents
 
+  # devise_scope :agent do
+  #   delete '/agents/sign_out' => 'sessions#destroy'
+  # end
+  
   resources :properties 
     # resources :invitation do
   get 'home/index'
@@ -9,6 +15,15 @@ Rails.application.routes.draw do
   get 'home/about'
   get 'home/about'
   
+  devise_for :agents, controllers: {
+    registrations: 'agents/registrations',
+    # sign_out: 'agents/sessions',
+    # get '/agents/sign_up(.:format)' => "devise/registrations#new"
+    sessions: 'agents/sessions'
+    }
+
+    
+
   resources :agents do
     # get :mf_export_types, :on => :collection
     # get :destroy, :on => :member
@@ -19,12 +34,7 @@ Rails.application.routes.draw do
     get :index, :on => :collection
   end
 
-  devise_for :agents, controllers: {
-    registrations: 'agents/registrations',
-    # sign_out: 'agents/sessions',
-    # get '/agents/sign_up(.:format)' => "devise/registrations#new"
-    sessions: 'agents/sessions'
-    }
+  
   
     resources :companies
     resources :invitations
@@ -32,9 +42,7 @@ Rails.application.routes.draw do
     resources :smart_locks
     
     #
-    devise_scope :agent do
-      delete '/agents/sign_out' => 'sessions#destroy'
-    end
+    
     
   # root to: "home#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
