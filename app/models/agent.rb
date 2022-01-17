@@ -4,6 +4,6 @@ class Agent < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   belongs_to :company
-  has_many :properties, dependent: :destroy
-  has_many :invitations, dependent: :destroy
+  has_many :properties#, dependent: :destroy
+  has_many :invitations#, dependent: :destroy
 end

@@ -22,7 +22,9 @@ class PropertiesController < ApplicationController
   # POST /properties or /properties.json
   def create
     @property = Property.new(property_params)
-
+    debugger
+    # @property.company_id=current_agent.company_id
+    @property.agent_id=current_agent.id
     respond_to do |format|
       if @property.save
         format.html { redirect_to property_url(@property), notice: "Property was successfully created." }

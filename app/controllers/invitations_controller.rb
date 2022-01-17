@@ -1,6 +1,7 @@
 class InvitationsController < ApplicationController
   before_action :set_invitation, only: %i[ show edit update destroy ]
-
+  before_action :assign_lockcode, only: %i[create]
+ 
   # GET /invitations or /invitations.json
   def index
     @invitations = Invitation.all
@@ -22,7 +23,16 @@ class InvitationsController < ApplicationController
   # POST /invitations or /invitations.json
   def create
     @invitation = Invitation.new(invitation_params)
-
+    @invitation.agent_id=current_agent.id
+    # debugger
+    # @property = Property.find_by_id(params[:invitation][:property_id])
+    @invitation.property_id = @property.id
+    @lock_code = @property.lock_codes.where("invitation": true).last
+    if @lock_code.present?
+      # debugger
+        @invitation.lock_code_id= @lock_code.id
+        @lock_code.update("invitation": false)
+    end
     respond_to do |format|
       if @invitation.save
         format.html { redirect_to invitation_url(@invitation), notice: "Invitation was successfully created." }
@@ -57,6 +67,12 @@ class InvitationsController < ApplicationController
     end
   end
 
+  def assign_lockcode
+    @property = Property.find_by_id(params[:invitation][:property_id])
+    @lock_code = @property.lock_codes.where("invitation": true).last
+    @lock_code.update(:invitation => false)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_invitation
@@ -65,6 +81,6 @@ class InvitationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def invitation_params
-      params.require(:invitation).permit(:recipient_email, :agent_id, :property_id, :lock_code_id)
+      params.require(:invitation).permit(:id, :recipient_email, :agent_id, :property_id, :lock_code_id)
     end
 end

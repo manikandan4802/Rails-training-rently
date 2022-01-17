@@ -14,9 +14,10 @@ class Agents::SessionsController < Devise::SessionsController
   # end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    puts ("2860538296105162659823605168326528365,#{params}")
+    super
+  end
 
   # protected
 

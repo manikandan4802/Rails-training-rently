@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2022_01_11_100937) do
 
   create_table "lock_codes", force: :cascade do |t|
     t.integer "code"
-    t.boolean "invitation"
+    t.boolean "invitation", default: true
     t.integer "property_id", null: false
     t.integer "smart_lock_id", null: false
     t.datetime "created_at", precision: 6, null: false

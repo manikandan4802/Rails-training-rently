@@ -1,12 +1,12 @@
 # frozen_string_literal: true
-
+require 'byebug'
 class Agents::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   def new
     # require 'byebug'
     # debugger
-  # puts ("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+  puts ("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
     # @agent = Agent.new
     super
   end
@@ -24,8 +24,8 @@ class Agents::RegistrationsController < Devise::RegistrationsController
   # POST /resource
     def create
       # require 'byebug'
-      # debugger
-      # puts ("***************************************")
+      debugger
+      puts ("***************************************")
       @company = Company.new(permit_company)
     #  puts("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
       # respond_to do |format|
@@ -51,11 +51,6 @@ class Agents::RegistrationsController < Devise::RegistrationsController
      
       # end
     end
-    #super
-
-  
-
-
 
     private
     

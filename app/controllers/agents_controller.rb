@@ -14,7 +14,7 @@ class AgentsController < ApplicationController
   # GET /agents/new
   def new
     @agent = Agent.new
-    puts "Welcome to India"
+    puts "Welcome to India #{params}"
   end
 
   # GET /agents/1/edit
@@ -24,7 +24,9 @@ class AgentsController < ApplicationController
   # POST /agents or /agents.json
   def create
     @agent = Agent.new(agent_params)
-
+    # debugger
+    @agent.company_id=current_agent.company_id
+    puts "Welcome to Home #{params}"
     respond_to do |format|
       if @agent.save
         format.html { redirect_to agent_url(@agent), notice: "Agent was successfully created." }
@@ -63,11 +65,13 @@ class AgentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_agent
+      # debuggerr
       @agent = Agent.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def agent_params
-      params.require(:agent).permit(:agent_name, :role, :phone_number, :company_id)
+      debugger
+      params.require(:agent).permit(:agent_name, :role, :phone_number, :company_id, :email, :password)
     end
 end
