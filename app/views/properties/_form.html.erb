@@ -1,3 +1,7 @@
+<div class="card text-center" style="width: 50rem;">
+  <div class="card-body text-center">
+  <%= image_tag "property.jpeg", style: 'height:7vw;width:15vw;margin-bottom:20px;' %>
+    <h5 class="card-title">Property Details </h5></br>
 <%= form_with(model: property, local: true) do |form| %>
   <% if property.errors.any? %>
     <div id="error_explanation">
@@ -11,34 +15,38 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :property_type %>
-    <%= form.text_field :property_type %>
+  <div class="row ">
+  <div class="col-6 form-floating mb-3 ">
+  <%= form.text_field :property_type, class:"form-control",placeholder:"Property Type" %>
+  <label> Property Type</label>
   </div>
 
-  <div class="field">
-    <%= form.label :bhk %>
-    <%= form.number_field :bhk %>
+  <div class="col-6 form-floating mb-3">
+  <%= form.text_field :bhk, class:"form-control",placeholder:"BHK" %>
+  <label> BHK size</label>
+</div>
+  
   </div>
 
-  <div class="field">
-    <%= form.label :size %>
-    <%= form.number_field :size %>
+  <div class="row">
+  <div class="col-6 form-floating mb-3">
+    <%= form.text_field :size, class:"form-control",placeholder:"size" %>
+    <label>Size in square feet</label>
   </div>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.number_field :price %>
+  <div class="col-6 form-floating mb-3">
+  <div class="input-group">
+      <div class="input-group-text">Rs</div>
+    <%= form.text_field :price, class:"form-control",placeholder:"Price in Rupees" %>  
+  </div></div></div>
+
+  <div class="row">
+  <div class="col-6 form-floating mb-3">
+    <%= form.text_field :address, class:"form-control",placeholder:"Address" %>
+    <label> Address</label>
+  </div></div>
   </div>
-
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
-
- 
-
   <div class="actions">
-    <%= form.submit %>
-  </div>
+    <input type="submit" name="commit" class= "col-2 btn btn-info" value="Create Property" data-disable-with="Create Property">
+  </div><br/>
 <% end %>

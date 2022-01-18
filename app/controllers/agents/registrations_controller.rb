@@ -28,6 +28,10 @@ class Agents::RegistrationsController < Devise::RegistrationsController
       puts ("***************************************")
       @company = Company.new(permit_company)
       puts ("values : #{params}")
+      
+      @agent=Agent.new(permit_agent)
+      @company.company_name=@agent.company_name
+      @company.admin_name=@agent.agent_name
     #  puts("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
       # respond_to do |format|
         if @company.save
@@ -63,7 +67,7 @@ class Agents::RegistrationsController < Devise::RegistrationsController
     end
 
     def permit_agent
-      params.require(:agent).permit(:email,:password, :agent_name, :phone_number)
+      params.require(:agent).permit(:email,:password, :agent_name, :phone_number, :company_name)
     end
   # GET /resource/sign_up
   # def new

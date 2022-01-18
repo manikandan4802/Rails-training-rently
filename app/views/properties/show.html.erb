@@ -1,38 +1,40 @@
-<div class="card " style="width: 25rem;">
+<html>
+<style>
+
+html, body { background: #FF6633; }
+.nav-link {
+color:white;
+}
+.navbar-custom {
+    background-color: 
+    font-color:white;
+}
+.content{
+    display:block;
+}
+.con{
+    background: #253E7E;
+}
+</style>
+
+
+
+<div class="card" style="height: 30rem; width: 68rem;">
   <div class="card-body text-center">
   <%= image_tag "download.png", style: 'height:7vw;width:15vw;margin-bottom:20px;' %>
-    <h5 class="card-title">Property Details </h5>
-    <p>
+    <h4>Property Details </h4>
     </div>
     <div class="card-body">
-  <strong>Property type:</strong>
-  <%= @property.property_type %>
-</p>
+<pre>         
+                                                  <strong>Property Type:</strong> <%= @property.property_type %>
+                                                  <strong>          Bhk:</strong> <%= @property.bhk %>
+                                                  <strong>         Size:</strong> <%= @property.size %>
+                                                  <strong>        Price:</strong> Rs.<%= @property.price %>
+                                                  <strong>      Address:</strong> <%= @property.address %> 
+                                                  <strong>        Agent:</strong> <%= @property.agent_id %> 
+                                                  </pre>
 
-<p>
-  <strong>Bhk:</strong>
-  <%= @property.bhk %>
-</p>
-
-<p>
-  <strong>Size:</strong>
-  <%= @property.size %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @property.price %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @property.address %>
-</p>
-
-<p>
-  <strong>Agent:</strong>
-  <%= @property.agent_id %>
-</p> </div>
+</div>
 <div class="card-body text-center">
 <%= link_to 'Edit', edit_property_path(@property), class: "btn btn-info" %> |
 <%= link_to 'Back', properties_path, class: "btn btn-info"%> 
@@ -40,3 +42,4 @@
 
 </div>
 
+</html>

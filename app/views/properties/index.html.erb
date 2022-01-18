@@ -28,9 +28,9 @@
         <td><%= property.price %></td>
         <td><%= property.address %></td>
         <td><%= link_to 'Show', property ,class:"btn btn-success"%></td>
-        <td><%= link_to 'Edit', edit_property_path(property) , class:"btn btn-danger"%></td>
-        <td><%= button_to 'Destroy', "/properties/#{property.id}", method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-info"%></td>
-        <td><%= link_to 'Invitation Link', new_invitation_path(:property_id => property.id ),class:"btn btn-info"%></td>
+        <td><%= link_to 'Edit', edit_property_path(property) , class:"btn btn-info"%></td>
+        <td><%= button_to 'Destroy', "/properties/#{property.id}", method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-danger"%></td>
+        <td><%= link_to 'Invitation Link', new_invitation_path(:property_id => property.id ),class:"btn btn-primary"%></td>
         
       </tr>
     <% end %>

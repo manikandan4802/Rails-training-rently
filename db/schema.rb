@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_17_104142) do
+ActiveRecord::Schema.define(version: 2022_01_18_122319) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2022_01_17_104142) do
   end
 
   create_table "agents", force: :cascade do |t|
+    t.string "company_name"
     t.string "agent_name"
     t.string "role"
     t.integer "phone_number"
@@ -86,6 +87,48 @@ ActiveRecord::Schema.define(version: 2022_01_17_104142) do
     t.index ["smart_lock_id"], name: "index_lock_codes_on_smart_lock_id"
   end
 
+  create_table "oauth_access_grants", force: :cascade do |t|
+    t.integer "resource_owner_id", null: false
+    t.integer "application_id", null: false
+    t.string "token", null: false
+    t.integer "expires_in", null: false
+    t.text "redirect_uri", null: false
+    t.datetime "created_at", null: false
+    t.datetime "revoked_at"
+    t.string "scopes", default: "", null: false
+    t.index ["application_id"], name: "index_oauth_access_grants_on_application_id"
+    t.index ["resource_owner_id"], name: "index_oauth_access_grants_on_resource_owner_id"
+    t.index ["token"], name: "index_oauth_access_grants_on_token", unique: true
+  end
+
+  create_table "oauth_access_tokens", force: :cascade do |t|
+    t.integer "resource_owner_id"
+    t.integer "application_id", null: false
+    t.string "token", null: false
+    t.string "refresh_token"
+    t.integer "expires_in"
+    t.datetime "revoked_at"
+    t.datetime "created_at", null: false
+    t.string "scopes"
+    t.string "previous_refresh_token", default: "", null: false
+    t.index ["application_id"], name: "index_oauth_access_tokens_on_application_id"
+    t.index ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true
+    t.index ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id"
+    t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true
+  end
+
+  create_table "oauth_applications", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "uid", null: false
+    t.string "secret", null: false
+    t.text "redirect_uri", null: false
+    t.string "scopes", default: "", null: false
+    t.boolean "confidential", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
+  end
+
   create_table "properties", force: :cascade do |t|
     t.string "property_type"
     t.integer "bhk"
@@ -113,6 +156,8 @@ ActiveRecord::Schema.define(version: 2022_01_17_104142) do
   add_foreign_key "invitations", "properties"
   add_foreign_key "lock_codes", "properties"
   add_foreign_key "lock_codes", "smart_locks"
+  add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
+  add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "properties", "agents"
   add_foreign_key "smart_locks", "companies"
   add_foreign_key "smart_locks", "properties"
