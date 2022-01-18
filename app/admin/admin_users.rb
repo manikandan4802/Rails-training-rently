@@ -1,7 +1,8 @@
+require 'byebug'
 ActiveAdmin.register AdminUser do
   permit_params :email, :password, :password_confirmation
 
-  index do
+  index :title => 'Admin Users' do
     selectable_column
     id_column
     column :email
@@ -10,6 +11,8 @@ ActiveAdmin.register AdminUser do
     column :created_at
     actions
   end
+
+  
 
   filter :email
   filter :current_sign_in_at
@@ -22,7 +25,9 @@ ActiveAdmin.register AdminUser do
       f.input :password
       f.input :password_confirmation
     end
+    
     f.actions
+    
   end
 
 end

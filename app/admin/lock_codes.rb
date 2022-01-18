@@ -1,22 +1,18 @@
-ActiveAdmin.register Invitation do
+ActiveAdmin.register LockCode do
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :recipient_email, :agent_id, :property_id, :lock_code_id
+  permit_params :code, :invitation, :property_id, :smart_lock_id
   #
   # or
   #
   # permit_params do
-  #   permitted = [:recipient_email, :agent_id, :property_id, :lock_code_id]
+  #   permitted = [:code, :invitation, :property_id, :smart_lock_id]
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  form do |f|
-    f.inputs  :recipient_email, :agent_id, :property_id, :lock_code_id
-    actions
-    end
   
 end

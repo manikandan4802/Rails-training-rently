@@ -6,7 +6,10 @@ class Property < ApplicationRecord
 
 
 after_create :add_smartlock
- 
+def to_s
+  self.id
+end
+
   def add_smartlock
     smartlock = SmartLock.create(property_id:self.id, company_id: self.agent.company_id)
     sm_id = SmartLock.last.id

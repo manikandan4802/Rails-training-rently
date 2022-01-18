@@ -5,7 +5,7 @@ ActiveAdmin.register Property do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :property_type, :bhk, :size, :price, :address, :agent_id
+  permit_params :property_type, :bhk, :size, :price, :address, :agent_id
   #
   # or
   #
@@ -15,4 +15,9 @@ ActiveAdmin.register Property do
   #   permitted
   # end
   
+  form do |f|
+    f.inputs :agent_id,:property_type, :bhk, :size, :price, :address, collection: Agent.all.map{|x| [x.agent_name, x.id]}
+    f.inputs collection: Property.all.map{|x| [x.id]}
+    actions
+  end
 end

@@ -27,6 +27,7 @@ class Agents::RegistrationsController < Devise::RegistrationsController
       debugger
       puts ("***************************************")
       @company = Company.new(permit_company)
+      puts ("values : #{params}")
     #  puts("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
       # respond_to do |format|
         if @company.save
@@ -41,6 +42,7 @@ class Agents::RegistrationsController < Devise::RegistrationsController
           @agent.save!
          # render 'home/header'
           redirect_to properties_path
+          # format.html { redirect_to 'home/about' }
           # format.html { redirect_to agent_url(@company.id), notice: "Company was successfully created." }
          
           # format.json { render :show, status: :created, location: @company }

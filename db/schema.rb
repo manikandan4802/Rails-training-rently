@@ -99,7 +99,6 @@ ActiveRecord::Schema.define(version: 2022_01_17_104142) do
   end
 
   create_table "smart_locks", force: :cascade do |t|
-    t.string "serial_num"
     t.integer "company_id", null: false
     t.integer "property_id", null: false
     t.datetime "created_at", precision: 6, null: false

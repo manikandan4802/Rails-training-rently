@@ -14,5 +14,9 @@ ActiveAdmin.register Company do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   end
+  def to_s
+    self.company_name
+ end
+
   
 end

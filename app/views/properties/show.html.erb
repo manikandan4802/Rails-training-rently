@@ -1,4 +1,10 @@
-<p>
+<div class="card " style="width: 25rem;">
+  <div class="card-body text-center">
+  <%= image_tag "download.png", style: 'height:7vw;width:15vw;margin-bottom:20px;' %>
+    <h5 class="card-title">Property Details </h5>
+    <p>
+    </div>
+    <div class="card-body">
   <strong>Property type:</strong>
   <%= @property.property_type %>
 </p>
@@ -26,7 +32,11 @@
 <p>
   <strong>Agent:</strong>
   <%= @property.agent_id %>
-</p>
+</p> </div>
+<div class="card-body text-center">
+<%= link_to 'Edit', edit_property_path(@property), class: "btn btn-info" %> |
+<%= link_to 'Back', properties_path, class: "btn btn-info"%> 
+  </div>
 
-<%= link_to 'Edit', edit_property_path(@property) %> |
-<%= link_to 'Back', properties_path %>
+</div>
+

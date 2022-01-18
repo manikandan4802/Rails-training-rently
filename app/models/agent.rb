@@ -6,4 +6,7 @@ class Agent < ApplicationRecord
   belongs_to :company
   has_many :properties#, dependent: :destroy
   has_many :invitations#, dependent: :destroy
+  def to_s
+    self.agent_name
+ end
 end
