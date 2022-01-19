@@ -24,7 +24,7 @@ class Agents::RegistrationsController < Devise::RegistrationsController
   # POST /resource
     def create
       # require 'byebug'
-      debugger
+      # debugger
       puts ("***************************************")
       @company = Company.new(permit_company)
       puts ("values : #{params}")

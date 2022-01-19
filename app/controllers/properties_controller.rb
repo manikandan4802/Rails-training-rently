@@ -22,7 +22,7 @@ class PropertiesController < ApplicationController
   # POST /properties or /properties.json
   def create
     @property = Property.new(property_params)
-    debugger
+    # debugger
     # @property.company_id=current_agent.company_id
     @property.agent_id=current_agent.id
     respond_to do |format|

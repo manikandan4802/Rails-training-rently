@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  use_doorkeeper
+  # use_doorkeeper
+  use_doorkeeper do
+    # post :create, :on => :member
+    skip_controllers :authorizations, :applications, :authorized_applications
+  end
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # devise_for :agents
@@ -25,15 +30,7 @@ Rails.application.routes.draw do
 
     
 
-  resources :agents do
-    # get :mf_export_types, :on => :collection
-    # get :destroy, :on => :member
-    patch '/agents/:id/edit', to: 'agents#edit' # destroy
-    post :create, :on => :member
-    get :new, :on => :member
-    get :show, :on => :member
-    get :index, :on => :collection
-  end
+  resources :agents 
 
   
   

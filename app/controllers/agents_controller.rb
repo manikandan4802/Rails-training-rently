@@ -73,7 +73,7 @@ class AgentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def agent_params
-      debugger
+      # debugger
       params.require(:agent).permit(:agent_name, :role, :phone_number, :company_id, :email, :password)
     end
 end

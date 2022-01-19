@@ -1,7 +1,14 @@
+<div class="card text-center" style="width: 60rem;">
+  <div class="card-body text-center">
+  <%= image_tag "property.jpeg", style: 'height:7vw;width:15vw;margin-bottom:20px;' %>
+    <h4 class="card-title">Invitation Details </h4>
+<h5> Greetings! 
+<strong>
+  <%= @invitation.recipient_email %><strong/>
+</h5>
 
 <p>
-  <strong>Recipient email:</strong>
-  <%= @invitation.recipient_email %>
+  
 </p>
 
 <p>
@@ -22,4 +29,5 @@
 </p>
 
 <%= link_to 'Edit', edit_invitation_path(@invitation) , class: "btn btn-success"%>
-
+<div/>
+<div/>
