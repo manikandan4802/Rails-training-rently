@@ -5,6 +5,12 @@ Rails.application.routes.draw do
     skip_controllers :authorizations, :applications, :authorized_applications
   end
 
+  namespace 'api' do
+    namespace 'v1' do
+      resources :properties 
+    end
+  end
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # devise_for :agents

@@ -15,7 +15,14 @@ Doorkeeper.configure do
   resource_owner_from_credentials do |_routes|
     debugger
     Agent.authenticate(params[:email], params[:password])
-    Agent.first
+    puts("akskldlkqwhdqlkw")
+
+
+
+
+
+    
+    # Agent.first
   end
 
   

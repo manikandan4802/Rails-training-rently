@@ -15,7 +15,7 @@ ActiveAdmin.register Invitation do
   #   permitted
   # end
   form do |f|
-    f.inputs  :recipient_email, :agent_id, :property_id, :lock_code_id
+    f.inputs collection: Invitation.all.map{|x| [x.id]}
     actions
     end
   

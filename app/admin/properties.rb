@@ -16,7 +16,6 @@ ActiveAdmin.register Property do
   # end
   
   form do |f|
-    f.inputs :agent_id,:property_type, :bhk, :size, :price, :address, collection: Agent.all.map{|x| [x.agent_name, x.id]}
     f.inputs collection: Property.all.map{|x| [x.id]}
     actions
   end

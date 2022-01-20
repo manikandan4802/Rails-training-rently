@@ -35,6 +35,7 @@ class AgentsController < ApplicationController
   def create
     @agent = Agent.new(agent_params)
     # debugger
+    @agent.company_name=current_agent.company_name
     @agent.company_id=current_agent.company_id
     puts "Welcome to Home #{params}"
     respond_to do |format|
@@ -74,6 +75,6 @@ class AgentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def agent_params
       # debugger
-      params.require(:agent).permit(:agent_name, :role, :phone_number, :company_id, :email, :password)
+      params.require(:agent).permit(:agent_name, :company_name, :role, :phone_number, :company_id, :email, :password)
     end
 end
