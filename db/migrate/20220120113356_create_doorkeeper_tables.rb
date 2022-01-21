@@ -2,7 +2,7 @@
 
 class CreateDoorkeeperTables < ActiveRecord::Migration[6.0]
   def change
-    create_table :oauth_applications do |t|
+    create_table :  _applications do |t|
       t.string  :name,    null: false
       t.string  :uid,     null: false
       t.string  :secret,  null: false
@@ -37,7 +37,7 @@ class CreateDoorkeeperTables < ActiveRecord::Migration[6.0]
       # *the client MUST discard the old refresh token* and replace it with the
       # new refresh token. The authorization server MAY revoke the old
       # refresh token after issuing a new refresh token to the client.
-      # @see https://datatracker.ietf.org/doc/html/rfc6749#section-6
+      # @see https://tools.ietf.org/html/rfc6749#section-6
       #
       # Doorkeeper implementation: if there is a `previous_refresh_token` column,
       # refresh tokens will be revoked after a related access token is used.

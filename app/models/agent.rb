@@ -9,9 +9,9 @@ class Agent < ApplicationRecord
   
 
   def self.authenticate(email, password)
-    debugger
+    # debugger
     user = Agent.find_for_authentication(email: email)
-    # user&.valid_password?(password)
+    user&.valid_password?(password) ? user : nil
   end
 
   def to_s

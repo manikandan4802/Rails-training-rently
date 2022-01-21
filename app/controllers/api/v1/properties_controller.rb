@@ -1,5 +1,6 @@
 class Api::V1::PropertiesController < ApplicationController
-    before_action :set_property, only: [ :show, :update, :destroy ] 
+  before_action :doorkeeper_authorize!
+  before_action :set_property, only: [ :show, :update, :destroy ] 
   # GET /propertys or /propertys.json
     def index
         @properties = Property.all
@@ -18,21 +19,20 @@ class Api::V1::PropertiesController < ApplicationController
 
     def create
         @property = Property.new(property_params)
-        respond_to do |format|
-            if @property.save
-              format.html { redirect_to property_url(@property), notice: "Property was successfully created." }
-              format.json { render :show, status: :created, location: @property }
-            else
-              format.html { render :new, status: :unprocessable_entity }
-              format.json { render json: @property.errors, status: :unprocessable_entity }
-            end
-          end
-        # if @property.save
-            
-        #     render json: @property
-        # else
-        #     render errors: {error: 'Unable to create property'},status: 400
-        # end
+        # respond_to do |format|
+        #     if @property.save
+        #       format.html { redirect_to property_url(@property), notice: "Property was successfully created." }
+        #       format.json { render :show, status: :created, location: @property }
+        #     else
+        #       format.html { render :new, status: :unprocessable_entity }
+        #       format.json { render json: @property.errors, status: :unprocessable_entity }
+        #     end
+        #   end
+        if @property.save
+            render json: @property
+        else
+            render errors: {error: 'Unable to create property'},status: 400
+        end
     end
 
 
@@ -46,6 +46,11 @@ class Api::V1::PropertiesController < ApplicationController
     end
 
     def destroy
+      # debugger
+      pr = Property.find_by_id params[:id]
+      pr.lock_codes.clear
+      pr.invitations.clear
+      pr.destroy
         if @property
             @property.destroy
             render json: {message: "property was deleted"},status: 200

@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
   # use_doorkeeper
+  # puts('comeing')
+  # post '/oauth/token(.:format)' =>"doorkeeper/tokens#create"
+  # puts ("crossed")
+  # use_doorkeeper #do
+  #   skip_controllers :authorizations, :applications, :authorized_applications
+  #   # POST   '/oauth/token(.:format)' => "doorkeeper/tokens#create"
+  # end
   use_doorkeeper do
-    # post :create, :on => :member
-    skip_controllers :authorizations, :applications, :authorized_applications
+    controllers tokens: :tokens
   end
+
 
   namespace 'api' do
     namespace 'v1' do
