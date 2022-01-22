@@ -5,7 +5,7 @@
 <%= form_with(model: property, local: true) do |form| %>
   <% if property.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(property.errors.count, "error") %> prohibited this property from being saved:</h2>
+      <h5><%= pluralize(property.errors.count, "error") %> prohibited this property from being saved:</h5>
 
       <ul>
         <% property.errors.full_messages.each do |message| %>
@@ -16,23 +16,27 @@
   <% end %>
 
   <div class="row ">
-  <div class="col-6 form-floating mb-3 ">
-  <%= form.text_field :property_type, class:"form-control",placeholder:"Property Type" %>
-  <label> Property Type</label>
-  </div>
 
   <div class="col-6 form-floating mb-3">
-  <%= form.text_field :bhk, class:"form-control",placeholder:"BHK" %>
-  <label> BHK size</label>
-</div>
+  <div class="input-group">
+      <div class="input-group-text">Property type</div>
+    <%= form.text_field :property_type, class:"form-control",placeholder:"property_type" %>  
+  </div></div>
+
+  <div class="col-6 form-floating mb-3">
+  <div class="input-group">
+      <div class="input-group-text">BHK</div>
+    <%= form.text_field :bhk, class:"form-control",placeholder:"BHK" %>  
+  </div></div>
   
   </div>
 
   <div class="row">
   <div class="col-6 form-floating mb-3">
-    <%= form.text_field :size, class:"form-control",placeholder:"size" %>
-    <label>Size in square feet</label>
-  </div>
+  <div class="input-group">
+      <div class="input-group-text">Size (sq.feet)</div>
+    <%= form.text_field :size, class:"form-control",placeholder:"size_in_square_feet" %>  
+  </div></div>
 
   <div class="col-6 form-floating mb-3">
   <div class="input-group">
@@ -42,11 +46,12 @@
 
   <div class="row">
   <div class="col-6 form-floating mb-3">
-    <%= form.text_field :address, class:"form-control",placeholder:"Address" %>
-    <label> Address</label>
+  <div class="input-group">
+      <div class="input-group-text">Address</div>
+    <%= form.text_field :address, class:"form-control",placeholder:"Address" %>  
   </div></div>
   </div>
   <div class="actions">
-    <input type="submit" name="commit" class= "col-2 btn btn-info" value="Create Property" data-disable-with="Create Property">
+    <input type="submit" name="commit" class= "col-3 btn btn-info" value="Create Property" data-disable-with="Create Property">
   </div><br/>
 <% end %>

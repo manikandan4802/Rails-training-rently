@@ -25,6 +25,7 @@ gem 'devise'
 gem 'jquery-turbolinks'
 gem 'activeadmin'
 gem 'doorkeeper'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -32,6 +33,8 @@ gem 'doorkeeper'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
+  gem 'rspec-rails'
+  gem "factory_bot_rails", '~> 6.2.0'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
