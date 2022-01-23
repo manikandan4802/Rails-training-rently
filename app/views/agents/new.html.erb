@@ -18,10 +18,7 @@
       <%= form.text_field :agent_name %>
     </div>
   
-    <div class="field">
-      <%= form.label :role %>
-      <%= form.text_field :role %>
-    </div>
+    
   
     <div class="field">
       <%= form.label :phone_number %>
@@ -38,9 +35,12 @@
   <%= form.text_field :password %>
 </div>
 
-    <%= form_tag agents_path, method: :post do %>
-        <%= submit_tag 'Call Action' %>
-      <% end %>
+
+<div class="actions">
+<input type="submit" name="commit" class= "col-3 btn btn-info" value="Create Agent" data-disable-with="Create Agent">
+</div><br/>
+
+  
 
   <% end %>
   

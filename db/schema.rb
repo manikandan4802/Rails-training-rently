@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_20_113356) do
+ActiveRecord::Schema.define(version: 2022_01_23_174427) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -24,6 +24,27 @@ ActiveRecord::Schema.define(version: 2022_01_20_113356) do
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  end
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
   create_table "admin_users", force: :cascade do |t|
@@ -71,6 +92,7 @@ ActiveRecord::Schema.define(version: 2022_01_20_113356) do
     t.integer "lock_code_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "recipient_name"
     t.index ["agent_id"], name: "index_invitations_on_agent_id"
     t.index ["lock_code_id"], name: "index_invitations_on_lock_code_id"
     t.index ["property_id"], name: "index_invitations_on_property_id"
@@ -136,6 +158,7 @@ ActiveRecord::Schema.define(version: 2022_01_20_113356) do
     t.index ["property_id"], name: "index_smart_locks_on_property_id"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "agents", "companies"
   add_foreign_key "invitations", "agents"
   add_foreign_key "invitations", "lock_codes"

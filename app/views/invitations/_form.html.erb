@@ -11,14 +11,21 @@
     </div>
   <% end %>
 
-  <div class="col-6 form-floating mb-3">
-    <%= form.text_field :recipient_email, class:"form-control",placeholder:"recipient_email", autofocus: true, autocomplete: "email"  %>
-    <label>Recipient Email</label>
-    <%= form.hidden_field :property_id, value: params[:property_id] %>
-    
-  </div>
 
-  
+  <div class="row">
+  <div class="col-6 form-floating mb-3">
+  <div class="input-group">
+      <div class="input-group-text">Recipient Name</div>
+    <%= form.text_field :recipient_name, class:"form-control",placeholder:"Recipent Name" %>  
+  </div></div></div>
+
+  <div class="row">
+  <div class="col-6 form-floating mb-3">
+  <div class="input-group">
+      <div class="input-group-text">Recipient Email</div>
+    <%= form.text_field :recipient_email, class:"form-control",placeholder:"Recipient Email" %>  
+    <%= form.hidden_field :property_id, value: params[:property_id] %>
+  </div></div></div>
 
   <div class="actions">
     <%= form.submit %>

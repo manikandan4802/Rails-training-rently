@@ -1,46 +1,27 @@
-<h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div class="register-photo">
+<%= stylesheet_link_tag "register" %>
+    <div class="form-container">
+        <div class="image-holder"></div>
+        
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
+            <h2 class="text-center"><strong>Create</strong> an account.</h2>
+      
+            <div class="form-group"><input class="form-control" autofocus="autofocus" autocomplete="company_name" type="text" name="agent[company_name]" id="agent_company_name" placeholder="Company Name"</div>
+            <div class="form-group"><input class="form-control" autofocus="autofocus" autocomplete="agent_name" type="text" name="agent[agent_name]" id="agent_agent_name", placeholder="Agent Name"</div>
+            <div class="form-group"><input class="form-control" autofocus="autofocus" autocomplete="phone_number" type="text" name="agent[phone_number]" id="agent_phone_number" placeholder="Phone Number"</div>
+            <div class="form-group"><input class="form-control" autofocus="autofocus" autocomplete="email" type="email" value="" name="agent[email]" id="agent_email" placeholder="Email"</div>
+            <div class="form-group"><input class="form-control" autocomplete="new-password" type="password" name="agent[password]" id="agent_password" placeholder="Password"</div>
+            <div class="form-group"><input class="form-control" autocomplete="new-password" type="password" name="agent[password_confirmation]" id="agent_password_confirmation" placeholder="Password Confirmation"</div><br>
+           <div class="form-group">
+                <div class="form-check"><label class="form-check-label"><input class="form-check-input" type="checkbox">I agree to the license terms.</label></div>
+            </div>
+            <input class="btn mt-3 btn-info" type="submit" name="commit" value="Sign up" data-disable-with="Sign up">
+            <br><br>
+            <a class="already" href="/agents/sign_in">You already have an account?<strong> Log in </strong>here.</a><div/>
+            <% end %>
+    </div>
+</div>
 
-  <div class="field">
-    <%= f.label :company_name %><br />
-    <%= f.text_field :company_name, autofocus: true, autocomplete: "company_name" %>
-  </div>
-  
-
-  <div class="field">
-    <%= f.label :agent_name %><br />
-    <%= f.text_field :agent_name, autofocus: true, autocomplete: "agent_name" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :phone_number %><br />
-    <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
 

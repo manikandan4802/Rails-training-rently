@@ -51,6 +51,13 @@
     <%= form.text_field :address, class:"form-control",placeholder:"Address" %>  
   </div></div>
   </div>
+
+  <div class="row">
+  <div class="col-6 form-floating mb-3">
+  <%= form.file_field :image, class: "form-control"%>
+  </div></div>
+
+
   <div class="actions">
     <input type="submit" name="commit" class= "col-3 btn btn-info" value="Create Property" data-disable-with="Create Property">
   </div><br/>

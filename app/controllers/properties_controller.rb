@@ -57,7 +57,7 @@ class PropertiesController < ApplicationController
     pr.destroy
     respond_to do |format|
       format.html { redirect_to properties_url, notice: "Property was successfully destroyed." }
-      format.json { head :no_content }
+       format.json { head :no_content }
     end
   end
 
@@ -69,6 +69,6 @@ class PropertiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def property_params
-      params.require(:property).permit(:property_type, :bhk, :size, :price, :address, :agent_id)
+      params.require(:property).permit(:property_type, :bhk, :size, :price, :address, :agent_id, :image)
     end
 end

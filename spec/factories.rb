@@ -1,12 +1,14 @@
 # require 'rails_helper'
 FactoryBot.define do
-    factory :property do
-      property_type {"Rental House"}
-      bhk {3}
-      size {1000}
-      price {120830}
-      address {'Erode'}
-      agent_id {" "}
-    end
+
+  factory :agent do
+    agent_name {"Guru"}
+    company_name {"Rently"}
+    role {"Admin"}
+    phone_number {9952485524}
+    company_id {2}
+    email {"admin@example.com"}
+    password {"123123"}    
   end
+end
   

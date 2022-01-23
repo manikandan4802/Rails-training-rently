@@ -26,7 +26,7 @@
         <td><%= agent.role %></td>
         <td><%= agent.email %></td>
         <td><%= agent.phone_number %></td>
-        <td><%= agent.company_id %></td>
+        <td><%= agent.company.company_name %></td>
         <td><%= link_to 'Show', agent, class:"btn btn-success"%></td>
         <td><%= link_to 'Edit', edit_agent_path(agent) , class:"btn btn-info"%></td>
         <td><%= button_to 'Destroy', "/agents/#{agent.id}", method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-danger"%></td>

@@ -1,3 +1,4 @@
+require 'byebug'
 class AgentsController < ApplicationController
   before_action :authenticate_agent!
   before_action :set_agent, only: %i[ show edit update destroy ]
@@ -14,6 +15,7 @@ class AgentsController < ApplicationController
   
   # GET /agents or /agents.json
   def index
+    # debugger
     @agents = Agent.all
   end
 
@@ -23,6 +25,8 @@ class AgentsController < ApplicationController
 
   # GET /agents/new
   def new
+    # debugger
+   
     @agent = Agent.new
     puts "Welcome to India #{params}"
   end
@@ -33,9 +37,11 @@ class AgentsController < ApplicationController
 
   # POST /agents or /agents.json
   def create
+    if current_agent.present?
     @agent = Agent.new(agent_params)
-    # debugger
+    debugger
     @agent.company_name=current_agent.company_name
+    @agent.role="Sub Agent"
     @agent.company_id=current_agent.company_id
     puts "Welcome to Home #{params}"
     respond_to do |format|
@@ -47,6 +53,7 @@ class AgentsController < ApplicationController
         format.json { render json: @agent.errors, status: :unprocessable_entity }
       end
     end
+  end
   end
 
   # PATCH/PUT /agents/1 or /agents/1.json

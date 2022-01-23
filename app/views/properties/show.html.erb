@@ -25,6 +25,11 @@ color:white;
     <h4>Property Details </h4>
     </div>
     <div class="card-body">
+
+    <% if @property.image.attached? %>
+      <img src="<%=(url_for(@property.image))%>"/>
+    <% end %>
+
 <pre>         
                                                   <strong>Property Type:</strong> <%= @property.property_type %>
                                                   <strong>          Bhk:</strong> <%= @property.bhk %>

@@ -1,26 +1,23 @@
-<h2>Log in</h2>
+<html>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<div class="wrapper">
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+  <%= stylesheet_link_tag "login" %>
+    <div class="logo"> 
+    <%= image_tag "rently.png" %>
     </div>
-  <% end %>
+    <div class="text-center mt-4 name"> Sign Up </div><br>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span><input type="email" name="agent[email]" id="agent_email" placeholder="Email" autofocus="autofocus" autocomplete="email"></div>
+    
+      <div class="form-field d-flex align-items-center"> <span class="far fa-user"></span> <input type="password" autocomplete="current-password" name="agent[password]" id="agent_password" placeholder="Password"> </div>    
+      <input class="btn mt-3" type="submit" name="commit" value="Log in" data-disable-with="Log in">
 
-<%= render "agents/shared/links" %>
+      <br><br>
+            <a class="already" href="/agents/sign_up">You Don't have an account?<strong> Signup </strong> here.</a><div/>
+
+    <% end %>
+      
+</div>
+</html>

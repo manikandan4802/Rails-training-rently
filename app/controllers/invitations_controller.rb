@@ -69,6 +69,7 @@ class InvitationsController < ApplicationController
 
   def assign_lockcode
     @property = Property.find_by_id(params[:invitation][:property_id])
+    debugger
     @lock_code = @property.lock_codes.where("invitation": true).last
     @lock_code.update(:invitation => false)
   end
@@ -81,6 +82,6 @@ class InvitationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def invitation_params
-      params.require(:invitation).permit(:id, :recipient_email, :agent_id, :property_id, :lock_code_id)
+      params.require(:invitation).permit(:id, :recipient_name, :recipient_email, :agent_id, :property_id, :lock_code_id)
     end
 end

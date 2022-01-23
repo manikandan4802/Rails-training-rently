@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # root "welcome#index"
   # use_doorkeeper
   # puts('comeing')
   # post '/oauth/token(.:format)' =>"doorkeeper/tokens#create"
@@ -29,8 +30,8 @@ Rails.application.routes.draw do
   
   resources :properties 
     # resources :invitation do
-  get 'home/index'
-  root "home#index"
+  
+  root 'home#index'
   get 'home/about'
   get 'home/about'
   

@@ -6,7 +6,7 @@ class Agents::RegistrationsController < Devise::RegistrationsController
   def new
     # require 'byebug'
     # debugger
-  puts ("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+  # puts ("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
     # @agent = Agent.new
     super
   end
