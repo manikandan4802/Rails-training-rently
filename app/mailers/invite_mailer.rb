@@ -8,6 +8,6 @@ class InviteMailer < ApplicationMailer
   def invite_created
     @greeting = "Hi"
 
-    mail to: "to@example.org", subject: "Welcome to Rently Property!!!"
+    mail to:"from@example.com", subject: "Invite created"
   end
 end

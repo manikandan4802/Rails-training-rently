@@ -1,40 +1,63 @@
 require 'rails_helper'
 
 RSpec.describe Agent, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
-debugger
-  describe Agent do
-    #Have a valid factory
-    it "has a valid factory" do
-      expect(FactoryBot.build(:agent)).to be_valid
-    end
+  # pending "add some examples to (or delete) #{__FILE__}"
   
-    it "is invalid without a name" do
-    agent = FactoryBot.build(:agent, agent_name: nil)
-      agent.valid?
-      expect(agent.errors[:agent_name]).to include("can't be blank")
+    dummy_pwd = 'password'
+    dummy_email = 'tester@example.com'
+  before do
+    @company=FactoryBot.create(:company)
+  end
+
+  it "Agent has been created and Email Validated" do
+    result = FactoryBot.create(:agent,company_id:@company.id)
+    expect(result).to be_valid
+  end 
+
+  context "Agent Validations" do
+
+    it "has a email" do
+      @agent = FactoryBot.build(:agent,email:"sdfgfg",company_id:@company.id)
+      @agent.email = ""
+      expect(@agent).to_not be_valid
+      @agent = FactoryBot.build(:agent,company_id:@company.id)
+      expect(@agent).to be_valid
     end
 
-    it "is invalid without a email" do
-      agent = FactoryBot.build(:agent, email: nil)
-      agent.valid?
-      expect(agent.errors[:email]).to include("can't be blank")
-    end
+    it "has valid format" do
+      @agent = FactoryBot.build(:agent,company_id:@company.id,email:"admin..")
+    expect(@agent).to_not be_valid
+    @agent = FactoryBot.build(:agent,company_id:@company.id,email:dummy_email)
+    expect(@agent).to be_valid
+  end
 
-  #Must be invalid without password
-    it "is invalid without a password" do
-      agent = FactoryBot.build(:agent, password: nil)
-      agent.valid?
-      expect(agent.errors[:password]).to include("can't be blank")
-    end
+  it "has password at least 6 characters long" do
+    @agent = FactoryBot.build(:agent,company_id:@company.id,password:"pass",password_confirmation:"pass")
+    expect(@agent).to_not be_valid
+    @agent = FactoryBot.build(:agent,company_id:@company.id,password:"password",password_confirmation:"password")
+    expect(@agent).to be_valid
+  end
 
-  #If the email address is duplicated, it must be invalid.
-    it "is invalid with a duplicate email address" do
-      FactoryBot.create(:agent, email: "example@example.com")
-      agent = FactoryBot.build(:agent, email: "example@example.com")
-      agent.valid?
-      expect(agent.errors[:email]).to include("has already been taken")
-    end
+ 
+
+  it "has a name" do
+    @agent = FactoryBot.build(:agent,company_id:@company.id,name:nil)
+    expect(@agent).to_not be_valid
+    @agent = FactoryBot.build(:agent,company_id:@company.id,name:"Anush")
+    expect(@agent).to be_valid
+  end
+
+  it "has a role" do
+    @agent = FactoryBot.build(:agent,company_id:@company.id,role:nil)
+    expect(@agent).to_not be_valid
+    @agent = FactoryBot.build(:agent,company_id:@company.id,role:"Admin")
+    expect(@agent).to be_valid
+  end
+
+
 
   end
+
+
+  
 end

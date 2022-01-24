@@ -10,52 +10,52 @@
 
       <% if agent_signed_in? %>
 
-        <li class="nav-item">
-        <%= link_to 'Edit Profile', edit_agent_registration_path, class:"nav-link active"%>
-        </li>
-      
-        <li class="nav-item dropdown">
-          <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Agent
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <%= link_to 'Add Agent', new_agent_path, class:"dropdown-item "%>
-          <%= link_to 'Agents', agents_path, class:"dropdown-item"%>  
-          </ul>
-        </li>
+         
+    
+              <li class="nav-item">
+                  <%= link_to 'Edit Profile', edit_agent_registration_path, class:"nav-link active"%>
+              </li>
+                
+              <%if current_agent.role=='Admin'%>
+              <li class="nav-item dropdown">
+                  <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Agent
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <%= link_to 'Add Agent', new_agent_path, class:"dropdown-item "%>
+                      <%= link_to 'Agents', agents_path, class:"dropdown-item"%>  
+                  </ul>
+              </li>
+              <%end%>
+              
+                <li class="nav-item dropdown">
+                      <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Property
+                      </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <%= link_to 'Add Properties', new_property_path, class:"dropdown-item "%>
+                      <%=  link_to 'Properties', properties_path,class:"dropdown-item "%>  
+                  </ul>
+                </li>
 
-
-        <li class="nav-item dropdown">
-          <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Property
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <%= link_to 'Add Properties', new_property_path, class:"dropdown-item "%>
-          <%=  link_to 'Properties', properties_path,class:"dropdown-item "%>  
-          </ul>
-        </li>
-
-
-          <li class="nav-item">
-          <%= link_to 'About Us', home_about_path, class:"nav-link"%>
-          </li>
-
-          <li class="nav-item">
-          <%= button_to 'Log out', destroy_agent_session_path, method: :delete, class:'nav-link', class: "btn btn-dark" %>
-          </li>
+                
+                  <li class="nav-item">
+                      <%= link_to 'About Us', home_about_path, class:"nav-link"%>
+                  </li>
           
+                <li class="nav-item">
+                    <%= button_to 'Log out', destroy_agent_session_path, method: :delete, class:'nav-link', class: "btn btn-dark" %>
+                </li>
 
         <%else%>
-          <li class="nav-item">
-          <%= link_to 'Sign Up', new_agent_registration_path, class:"nav-link"%>
-          </li>
+            <li class="nav-item">
+                <%= link_to 'Sign Up', new_agent_registration_path, class:"nav-link"%>
+            </li>
 
-          <li class="nav-item">
-          <%= link_to 'Log in', new_agent_session_path, class:"nav-link"%>
-          </li>
-        
-          
-      <%end%>
+            <li class="nav-item">
+                <%= link_to 'Log in', new_agent_session_path, class:"nav-link"%>
+            </li>
+        <%end%>
       </ul>
     </div>
   </div>

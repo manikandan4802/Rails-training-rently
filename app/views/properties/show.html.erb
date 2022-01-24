@@ -1,22 +1,19 @@
+
+
+<!DOCTYPE html>
 <html>
-<style>
-
-html, body { background: #FF6633; }
-.nav-link {
-color:white;
-}
-.navbar-custom {
-    background-color: 
-    font-color:white;
-}
-.content{
-    display:block;
-}
-.con{
-    background: #253E7E;
-}
-</style>
-
+	<head>
+		<style>
+			body {
+				text-align:center;
+			}
+			img {
+				width:400px;
+				height:200px;
+				object-fit: cover;
+			}
+		</style>
+	</head>
 
 
 <div class="card" style="height: 30rem; width: 68rem;">
@@ -25,19 +22,20 @@ color:white;
     <h4>Property Details </h4>
     </div>
     <div class="card-body">
-
+    <div class="row">
+    <div class="col-6 form-floating mb-3">
     <% if @property.image.attached? %>
       <img src="<%=(url_for(@property.image))%>"/>
-    <% end %>
+      
+    <% end %></div>
+    <div class="col-6 form-floating mb-3">
 
-<pre>         
-                                                  <strong>Property Type:</strong> <%= @property.property_type %>
-                                                  <strong>          Bhk:</strong> <%= @property.bhk %>
-                                                  <strong>         Size:</strong> <%= @property.size %>
-                                                  <strong>        Price:</strong> Rs.<%= @property.price %>
-                                                  <strong>      Address:</strong> <%= @property.address %> 
-                                                  <strong>        Agent:</strong> <%= @property.agent_id %> 
-                                                  </pre>
+    <strong>Property Type:</strong> <%= @property.property_type %><br>
+    <strong>          Bhk:</strong> <%= @property.bhk %><br>
+    <strong>         Size:</strong> <%= @property.size %><br>
+    <strong>        Price:</strong> Rs.<%= @property.price %><br>
+    <strong>      Address:</strong> <%= @property.address %> <br>
+    <strong>        Agent:</strong> <%= @property.agent_id %> <br>
 
 </div>
 <div class="card-body text-center">

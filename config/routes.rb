@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       resources :properties 
     end
   end
-
+  post 'agents#create', action: :create, controller: :agents,:as => 'add_agents'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # devise_for :agents
