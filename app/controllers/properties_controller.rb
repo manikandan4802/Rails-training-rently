@@ -1,8 +1,12 @@
+require 'byebug'
 class PropertiesController < ApplicationController
-  before_action :set_property, only: %i[ show edit update destroy ]
+  before_action :set_property, only: %i[ show edit update destroy attach detach]
 
   # GET /properties or /properties.json
   def index
+    # debugger
+    # puts("899873479390479070950973052-15097598179827")
+    # debugger
     @properties = Property.all
   end
 
@@ -58,6 +62,25 @@ class PropertiesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to properties_url, notice: "Property was successfully destroyed." }
        format.json { head :no_content }
+    end
+  end
+
+  def attach 
+    sl=SmartLock.where(assigned: false).first
+    sl.update(property_id: @property.id,company_id:current_agent.company_id, assigned: true)
+    respond_to do |format|
+      format.html { redirect_to properties_url, notice: "Smart Lock was successfully assigned." }
+       format.json { head :no_content }
+    end
+
+
+  end
+  def detach
+    dl=@property.smart_lock
+    dl.update(assigned: false, property_id:20,company_id: 10)
+    respond_to do |format|
+      format.html { redirect_to properties_url, notice: "Smart Lock was successfully detached." }
+      format.json { head :no_content }
     end
   end
 

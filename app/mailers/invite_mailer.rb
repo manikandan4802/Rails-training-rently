@@ -5,9 +5,16 @@ class InviteMailer < ApplicationMailer
   #
   #   en.invite_mailer.invite_created.subject
   #
+ 
   def invite_created
+    @agent=params[:agent]
+    @invitation=params[:invitation]
     @greeting = "Hi"
-
-    mail to:"from@example.com", subject: "Invite created"
+    attachments['rently.png'] = File.read('app/assets/images/rently.png')
+    mail( 
+    from:"manikandan.k@rently.com",
+    to: "to@example.org", 
+    subject: "Invite created"
+    )
   end
 end

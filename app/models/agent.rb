@@ -7,6 +7,7 @@ class Agent < ApplicationRecord
   has_many :properties#, dependent: :destroy
   has_many :invitations#, dependent: :destroy
   
+  validates :agent_name,:email,:password,:phone_number,:company_name,:role, presence: true
 
   def self.authenticate(email, password)
     # debugger

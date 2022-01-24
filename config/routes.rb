@@ -28,7 +28,12 @@ Rails.application.routes.draw do
   #   delete '/agents/sign_out' => 'sessions#destroy'
   # end
   
-  resources :properties 
+  resources :properties do
+    member do
+      post 'attach'
+      post 'detach'
+    end
+  end 
     # resources :invitation do
   
   root 'home#index'

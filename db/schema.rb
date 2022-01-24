@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_23_174427) do
+ActiveRecord::Schema.define(version: 2022_01_24_100841) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -154,6 +154,7 @@ ActiveRecord::Schema.define(version: 2022_01_23_174427) do
     t.integer "property_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "assigned", default: false
     t.index ["company_id"], name: "index_smart_locks_on_company_id"
     t.index ["property_id"], name: "index_smart_locks_on_property_id"
   end

@@ -16,7 +16,7 @@ class AgentsController < ApplicationController
   # GET /agents or /agents.json
   def index
     # debugger
-    @agents = Agent.all
+    @agents = Agent.all.where(company_id: current_agent.company_id)
   end
 
   # GET /agents/1 or /agents/1.json
