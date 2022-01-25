@@ -12,7 +12,7 @@ FactoryBot.define do
     role {'admin'}
     phone_number {9952485524}
     company_id {" "}
-    email {"mani@ssgsly.com"}
+    email {"mani@ssssgsly.com"}
     password {"123123"}    
   end
 

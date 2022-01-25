@@ -3,18 +3,13 @@ class InviteMailer < ApplicationMailer
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
-  #   en.invite_mailer.invite_created.subject
+  #   en.invite_mailer.invite_customer.subject
   #
- 
-  def invite_created
-    @agent=params[:agent]
-    @invitation=params[:invitation]
-    @greeting = "Hi"
-    attachments['rently.png'] = File.read('app/assets/images/rently.png')
-    mail( 
-    from:"manikandan.k@rently.com",
-    to: "to@example.org", 
-    subject: "Invite created"
-    )
+  def invite_customer(invitation)
+    # @property=propert
+    @invitation=invitation
+
+    mail to: @invitation.recipient_email,
+    subject: "New lock_code for your property #{@invitation.lock_code.code}"
   end
 end

@@ -39,6 +39,7 @@ class InvitationsController < ApplicationController
         if @invitation.save
           # format.InviteMailer.with(agent: current_agent, invitation: @invitation).invite_created.deliver_later
           format.html { redirect_to invitation_url(@invitation), notice: "Invitation was successfully created." }
+         
           format.json { render :show, status: :created, location: @invitation }
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -60,6 +61,7 @@ class InvitationsController < ApplicationController
     respond_to do |format|
       if @invitation.update(invitation_params)
         format.html { redirect_to invitation_url(@invitation), notice: "Invitation was successfully updated." }
+        
         format.json { render :show, status: :ok, location: @invitation }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -79,7 +81,7 @@ class InvitationsController < ApplicationController
   end
 
   def assign_lockcode
-    debugger
+    # debugger
     # @smart_lock= SmartLock.
     @property = Property.find_by_id(params[:invitation][:property_id])
     # debugger
