@@ -1,6 +1,6 @@
 require 'byebug'
 class AgentsController < ApplicationController
-  before_action :authenticate_agent!
+  # before_action :authenticate_agent!
   before_action :set_agent, only: %i[ show edit update destroy ]
 
   def destroy

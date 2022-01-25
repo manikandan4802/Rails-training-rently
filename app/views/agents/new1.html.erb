@@ -1,0 +1,17 @@
+<%= form_for @agent, as: :agent, url: agents_path do |f|  %>
+    <% if @agent.errors.any? %>
+      <ul>
+      <% @agent.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :Row %>
+      <div class="row">
+        <div class="col-sm-2">
+          <%= f.text_field :row, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+  <% end %>

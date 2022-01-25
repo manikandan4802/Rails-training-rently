@@ -8,7 +8,8 @@ class Agent < ApplicationRecord
   has_many :invitations#, dependent: :destroy
   
   validates :agent_name,:email,:password,:phone_number,:company_name,:role, presence: true
-
+  validates :phone_number, numericality: true 
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
   def self.authenticate(email, password)
     # debugger
     user = Agent.find_for_authentication(email: email)

@@ -44,12 +44,13 @@ class Agents::RegistrationsController < Devise::RegistrationsController
           @agent.role="Admin"
           @agent.phone_number=@company.phone_number 
           @agent.save!
-          redirect_to :controller => 'home', :action => 'index'
+          # redirect_to 
          # render 'home/header'
+         respond_to do |format|
           # redirect_to properties_path
           # format.html { redirect_to 'home/about' }
-          # format.html { redirect_to agent_url(@company.id), notice: "Company was successfully created." }
-         
+          format.html { redirect_to root_path, notice: "Company was successfully created." }
+         end
           # format.json { render :show, status: :created, location: @company }
         #else
           # format.html { render :new, status: :unprocessable_entity }

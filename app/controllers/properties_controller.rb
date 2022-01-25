@@ -1,7 +1,7 @@
 require 'byebug'
 class PropertiesController < ApplicationController
   before_action :set_property, only: %i[ show edit update destroy attach detach]
-
+  $flag=0
   # GET /properties or /properties.json
   def index
     # debugger
@@ -66,21 +66,37 @@ class PropertiesController < ApplicationController
   end
 
   def attach 
-    sl=SmartLock.where(assigned: false).first
-    sl.update(property_id: @property.id,company_id:current_agent.company_id, assigned: true)
-    respond_to do |format|
-      format.html { redirect_to properties_url, notice: "Smart Lock was successfully assigned." }
-       format.json { head :no_content }
+    if $flag==0
+      sl=SmartLock.where(assigned: false).first
+      sl.update(property_id: @property.id,company_id:current_agent.company_id, assigned: true)
+      respond_to do |format|
+        format.html { redirect_to properties_url, notice: "Smart Lock was successfully assigned." }
+        format.json { head :no_content }
+      end
+      $flag=1
+    else
+      respond_to do |format|
+        format.html { redirect_to properties_url, notice: "SmartLock Already attached" }
+         format.json { head :no_content }
+      end
     end
-
-
   end
+
+
   def detach
-    dl=@property.smart_lock
-    dl.update(assigned: false, property_id:20,company_id: 10)
-    respond_to do |format|
-      format.html { redirect_to properties_url, notice: "Smart Lock was successfully detached." }
-      format.json { head :no_content }
+    if $flag==1
+      dl=@property.smart_lock
+      dl.update(assigned: false, property_id:20,company_id: 10)
+      respond_to do |format|
+        format.html { redirect_to properties_url, notice: "Smart Lock was successfully detached." }
+        format.json { head :no_content }
+      end
+      $flag=0
+    else
+      respond_to do |format|
+        format.html { redirect_to properties_url, notice: "SmartLock is empty" }
+         format.json { head :no_content }
+      end
     end
   end
 

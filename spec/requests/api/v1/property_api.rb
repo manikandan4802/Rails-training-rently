@@ -23,7 +23,7 @@ RSpec.describe "Api V1 Properties", type: :request,oauth: true do
 		let(:token)       { FactoryBot.create(:access_token, resource_owner_id: agent.id) }
 	
 		it 'show the Index Page of property' do
-			debugger
+			# debugger
 		  get '/api/v1/properties', headers: { 'Authorization': 'Bearer ' + token.token }
 		
 		  expect(response).to be_successful
