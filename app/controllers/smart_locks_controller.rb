@@ -1,11 +1,14 @@
 class SmartLocksController < ApplicationController
-  before_action :set_smart_lock, only: %i[ show edit update destroy ]
+  before_action :set_smart_lock, only: %i[ show edit update destroy attach]
 
   # GET /smart_locks or /smart_locks.json
   def index
     @smart_locks = SmartLock.all
   end
 
+  def home
+  end
+  
   # GET /smart_locks/1 or /smart_locks/1.json
   def show
   end
@@ -57,13 +60,16 @@ class SmartLocksController < ApplicationController
     end
   end
 
+  
+
+
+
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_smart_lock
       @smart_lock = SmartLock.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def smart_lock_params
       params.require(:smart_lock).permit(:serial_num, :company_id, :property_id)
     end

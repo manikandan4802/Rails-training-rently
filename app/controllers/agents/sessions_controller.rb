@@ -10,7 +10,12 @@ class Agents::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   # def create
-  #   super
+  #   # user = Agent.find_by_email(params[:email]) 
+  #   # debugger
+  #   # if user.valid_password?(params[:password])
+  #   #   puts("************************************************************")
+  #   # end
+  #   # super
   # end
 
   # DELETE /resource/sign_out

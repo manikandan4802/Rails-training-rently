@@ -1,0 +1,18 @@
+<br>
+<h1>Smart Locks</h1>
+
+</br>
+
+<%= form_for :smart_lock, url:"/properties/#{params[:id]}/attach_lock_box" do |form| %>
+    <div class="controls"><h3>Smart Lock Serial Number</h3><p>
+    <%=form.select(:serial_number ,options_from_collection_for_select(@smart_locks, "id", "serial_number"))%>
+    </div>
+    
+    <br>
+    <div class="actions">
+    <input type="submit" name="commit" class="btn btn-success" value="Add Lock Box" data-disable-with="Smart Lock">
+  </div><br>
+  <%= link_to 'Back', properties_path, class: "btn btn-info"%> 
+    <br><br>
+<%end%>
+<br>

@@ -30,8 +30,9 @@ Rails.application.routes.draw do
   
   resources :properties do
     member do
-      post 'attach'
-      post 'detach'
+      get 'assign_smart_lock'
+      get 'detach_lock_box'
+      post 'attach_lock_box'
     end
   end 
     # resources :invitation do
@@ -56,7 +57,12 @@ Rails.application.routes.draw do
     resources :companies
     resources :invitations
     resources :lock_codes
-    resources :smart_locks
+    resources :smart_locks do
+      member do
+        # post attach
+        # get home
+      end
+    end 
     
     #
     

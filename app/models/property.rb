@@ -1,5 +1,6 @@
 class Property < ApplicationRecord
   belongs_to :agent
+  belongs_to :company
   has_one :smart_lock, dependent: :destroy
   has_many :lock_codes, dependent: :destroy
   has_many :invitations, dependent: :destroy
@@ -14,7 +15,10 @@ class Property < ApplicationRecord
   # validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
   # validates_uniqueness_of :phone_number, :email
 
-# after_create :add_smartlock
+# after_attach_lock_box :add_smartlock
+
+
+
 def to_s
   self.id
 end

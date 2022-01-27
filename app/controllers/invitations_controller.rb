@@ -24,8 +24,6 @@ class InvitationsController < ApplicationController
   def create
     @invitation = Invitation.new(invitation_params)
     @invitation.agent_id=current_agent.id
-    # debugger
-    # @property = Property.find_by_id(params[:invitation][:property_id])
     @invitation.property_id = @property.id
     @lock_code = @property.lock_codes.where("invitation": true).last
     if @property.smart_lock.present?
@@ -48,7 +46,7 @@ class InvitationsController < ApplicationController
       end
 
     else
-      puts("diqowlyiueuueoieyriuoy r ihriewroeiur iuerio uyuewuoweyiurwyhiruhrh ")
+      
       respond_to do |format|
         format.html { redirect_to properties_url, notice: "Invitation was not created.Add Smart Lock and codes" }
       end
@@ -83,10 +81,18 @@ class InvitationsController < ApplicationController
   def assign_lockcode
     # debugger
     # @smart_lock= SmartLock.
-    @property = Property.find_by_id(params[:invitation][:property_id])
-    # debugger
-    @lock_code = @property.lock_codes.where("invitation": true).last
-    @lock_code.update(:invitation => false)
+    smart_lock=SmartLock.where(property_id: params[:invitation][:property_id]).last
+    count=LockCode.where(invitation: true,property_id: params[:invitation][:property_id],smart_lock_id: smart_lock.id).count
+    if(count>0)
+      @property = Property.find_by_id(params[:invitation][:property_id])
+      @lock_code = @property.lock_codes.where("invitation": true).last
+      @lock_code.update(:invitation => false)
+    else  
+      for i in 0..9 do
+        newcode= rand(10 ** 6)
+        lc = LockCode.create(property_id: @property.id, smart_lock_id: smart_lock.id, code: newcode)
+      end
+    end
   end
 
   private

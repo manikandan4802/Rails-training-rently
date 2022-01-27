@@ -26,6 +26,7 @@ gem 'jquery-turbolinks'
 gem 'activeadmin'
 gem 'doorkeeper'
 
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -50,6 +51,7 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
+  gem 'database_cleaner'
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers

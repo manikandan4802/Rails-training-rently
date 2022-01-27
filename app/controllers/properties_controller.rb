@@ -1,15 +1,13 @@
 require 'byebug'
 class PropertiesController < ApplicationController
-  before_action :set_property, only: %i[ show edit update destroy attach detach]
-  $flag=0
+  before_action :set_property, only: %i[ show edit update destroy]
+  
   # GET /properties or /properties.json
   def index
     # debugger
-    # puts("899873479390479070950973052-15097598179827")
-    # debugger
-    @properties = Property.all
+    @properties = Property.where(agent_id: current_agent.id)
   end
-
+  
   # GET /properties/1 or /properties/1.json
   def show
   end
@@ -27,7 +25,7 @@ class PropertiesController < ApplicationController
   def create
     @property = Property.new(property_params)
     # debugger
-    # @property.company_id=current_agent.company_id
+    @property.company_id=current_agent.company_id
     @property.agent_id=current_agent.id
     respond_to do |format|
       if @property.save
@@ -56,6 +54,10 @@ class PropertiesController < ApplicationController
   # DELETE /properties/1 or /properties/1.json
   def destroy
     pr = Property.find_by_id params[:id]
+    debugger
+    sl=SmartLock.where(property_id: params[:id])
+    sl.update(property_id: nil)
+    # pr.smart_lock.clear
     pr.lock_codes.clear
     pr.invitations.clear
     pr.destroy
@@ -65,49 +67,47 @@ class PropertiesController < ApplicationController
     end
   end
 
-  def attach 
-    if $flag==0
-      sl=SmartLock.where(assigned: false).first
-      sl.update(property_id: @property.id,company_id:current_agent.company_id, assigned: true)
-      respond_to do |format|
-        format.html { redirect_to properties_url, notice: "Smart Lock was successfully assigned." }
-        format.json { head :no_content }
-      end
-      $flag=1
-    else
-      respond_to do |format|
-        format.html { redirect_to properties_url, notice: "SmartLock Already attached" }
-         format.json { head :no_content }
-      end
+
+  def assign_smart_lock
+    # debugger
+    @smart_locks=SmartLock.where(company_id:current_agent.company_id,property_id: nil)
+  end
+
+  def attach_lock_box
+    smart_lock=SmartLock.find_by_id(params[:smart_lock][:serial_number])
+    smart_lock.update(property_id: params[:id])
+    
+    for i in 0..9 do
+      newcode= rand(10 ** 6)
+      lc = LockCode.create(property_id: params[:id], smart_lock_id: smart_lock.id, code: newcode)
+    end
+
+    respond_to do |format|
+      format.html { redirect_to properties_url, notice: "Smart Lock was successfully assigned." }
+      format.json { head :no_content }
     end
   end
 
 
-  def detach
-    if $flag==1
-      dl=@property.smart_lock
-      dl.update(assigned: false, property_id:20,company_id: 10)
-      respond_to do |format|
-        format.html { redirect_to properties_url, notice: "Smart Lock was successfully detached." }
-        format.json { head :no_content }
-      end
-      $flag=0
-    else
-      respond_to do |format|
-        format.html { redirect_to properties_url, notice: "SmartLock is empty" }
-         format.json { head :no_content }
-      end
+  def detach_lock_box
+    smart_lock=SmartLock.find_by(property_id: params[:id])
+    # debugger
+    debugger
+    smart_lock.update(property_id: nil)
+    respond_to do |format|
+      format.html { redirect_to properties_url, notice: "Smart Lock was successfully detached." }
+      format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+   
     def set_property
+      # debugger
       @property = Property.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def property_params
-      params.require(:property).permit(:property_type, :bhk, :size, :price, :address, :agent_id, :image)
+      params.require(:property).permit(:property_type, :bhk, :size, :price, :address, :agent_id, :image, :company_id)
     end
 end

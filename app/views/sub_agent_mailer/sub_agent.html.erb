@@ -4,9 +4,10 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p><h2><b> Hello <%=@invitation.recipient_name  %>,</b> </h2> </p>
-    <p><h3>Congratualations! Your property was successfully assigned to you.</h3></p>
-    <p><b>Your Lock code key is <%=@invitation.lock_code.code%></p>
+    <p><h2><b> Hello <%= @agent.agent_name %>,</b> </h2> </p>
+    <p><h3>Your Account was successfully created. </h3></p>
+    <p><b>Username is </b> <%= @agent.email %></p>
+    <p><b>Password is</b> <%=@agent.email.split('@',2)[0] %>
     </p><br/>
     Thanks and regards,</br><br><br>
     <%= image_tag (attachments['thanks.png'].url) %>
