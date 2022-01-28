@@ -5,8 +5,9 @@ RSpec.describe "Api V1 Properties", type: :request,oauth: true do
 
 	before(:all) do
 		@company=FactoryBot.create(:company)
+		debugger
         @agent=FactoryBot.create(:agent,:company_id=>@company.id)
-		@property=FactoryBot.create(:property,:agent_id=>@agent.id)
+		@property=FactoryBot.create(:property,:agent_id=>@agent.id,:company_id=>@company.id)
 		
 	  end
 
@@ -18,8 +19,8 @@ RSpec.describe "Api V1 Properties", type: :request,oauth: true do
 	  end
 	  
 	  context 'authorized' do
-		# let(:application) { FactoryBot.create(:application) }
-		let(:agent)        { FactoryBot.create(:agent,company_id:@company.id) }
+		let(:application) { FactoryBot.create(:application) }
+		let(:agent)        { FactoryBot.create(:agent,company_id:@company.id,email: "instyrr@gmail.com") }
 		let(:token)       { FactoryBot.create(:access_token, resource_owner_id: agent.id) }
 	
 		it 'show the Index Page of property' do

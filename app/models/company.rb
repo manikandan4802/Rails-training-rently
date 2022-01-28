@@ -9,47 +9,13 @@ class Company < ApplicationRecord
     end
 
     def add_smart_locks
+      # for i in 0..9 do
+      #   smart_lock=SmartLock.where(company_id:nil).first
+      #   # debugger
+      #   smart_lock.update(company_id: self.id)
+      # end
       # debugger
-      for i in 0..9 do
-        # debugger
-        # debugger
-        x=SmartLock.where(company_id:nil).first
-        # debugger
-        x.update(company_id: self.id)
-        puts("Updated Smart Lock company id, #{i}")
-      end
+      SmartLock.where(company_id:nil).limit(10).update_all(company_id: self.id)
+      
     end
   end
-      # def add_smart_locks
-      #       for i in 0..9 do
-      #         lc = SmartLock.create(property_id: , smart_lock_id: self.id, code: newcode)
-      #        # debugger
-             
-      #      #  Lockcode.create!(:lockcode=>newcode,:smartlock_id=>@smartlock.id)
-      #        end
-      #     end
-      
-      #   end
-      # end
-
-
-      
-      # def add_smart_locks
-      #   for i in 0..9 do
-      #     sl=SmartLock.where(company_id: 1).first
-      #     # debugger
-      #   sl.update(company_id: self.id)
-        
-      #   end
-      # end
-      #   # sm_id = SmartLock.last.id
-        
-      #       smartlock = SmartLock.create(property_id:self.id, company_id: self.agent.company_id)
-      #       newcode= rand(10 ** 6)
-      #       lc = LockCode.create(property_id: self.id, smart_lock_id: sm_id, code: newcode)
-      #      # debugger
-           
-      #    #  Lockcode.create!(:lockcode=>newcode,:smartlock_id=>@smartlock.id)
-      #   end
-      # end
-

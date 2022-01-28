@@ -17,6 +17,10 @@ RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
+
+  # include Devise::TestHelpers
+  # config.include Devise::Test::ControllerHelpers, type: :controller
+
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
   end

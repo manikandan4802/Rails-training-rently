@@ -4,7 +4,7 @@ class PropertiesController < ApplicationController
   
   # GET /properties or /properties.json
   def index
-    # debugger
+    debugger
     @properties = Property.where(agent_id: current_agent.id)
   end
   

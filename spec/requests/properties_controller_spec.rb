@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe "Properties", type: :request do
+RSpec.describe "Properties", type: :controller do
   
 
   before(:all) do
     @company=FactoryBot.create(:company)
     @agent= FactoryBot.create(:agent,company_id:@company.id)
-    @property= FactoryBot.create(:property,:agent_id=>@agent.id)
+    @property= FactoryBot.create(:property,:agent_id=>@agent.id,:company_id=>@company.id)
     # @smart_lock = FactoryBot.create(:smart_lock,:property_id=>@property.id,:company_id=>@company.id)
     #   @lock_code = FactoryBot.create(:lock_code,:property_id=>@property.id,:smart_lock_id=>@smart_lock.id)
       
@@ -20,6 +20,7 @@ RSpec.describe "Properties", type: :request do
   # end
   it "Agent Properties Index Page" do
     # sign_in @agent
+    
     get properties_path
 
     expect(response).to render_template 'properties/index'

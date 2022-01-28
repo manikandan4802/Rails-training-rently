@@ -5,7 +5,7 @@ ActiveAdmin.register Invitation do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :recipient_email, :agent_id, :property_id, :lock_code_id
+  permit_params :recipient_email, :agent_id, :property_id, :lock_code_id, :recipient_name
   #
   # or
   #
