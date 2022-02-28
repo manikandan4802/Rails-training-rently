@@ -4,7 +4,7 @@ class PropertiesController < ApplicationController
   
   # GET /properties or /properties.json
   def index
-    debugger
+    # debugger
     @properties = Property.where(agent_id: current_agent.id)
   end
   
@@ -54,7 +54,7 @@ class PropertiesController < ApplicationController
   # DELETE /properties/1 or /properties/1.json
   def destroy
     pr = Property.find_by_id params[:id]
-    debugger
+    # debugger
     sl=SmartLock.where(property_id: params[:id])
     sl.update(property_id: nil)
     # pr.smart_lock.clear
