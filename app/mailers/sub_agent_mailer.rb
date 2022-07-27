@@ -8,7 +8,7 @@ class SubAgentMailer < ApplicationMailer
   def sub_agent(agent)
     @agent=agent
     attachments.inline["thanks.png"] = File.read("#{Rails.root}/app/assets/images/thanks.png")
-    mail to: "instronsmani@gmail.com",
+    mail to: @agent.email,
     subject: "Password Credentials for your account"
 end
   # def sub_agent
